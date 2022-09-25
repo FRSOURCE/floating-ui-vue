@@ -1,0 +1,5 @@
+node_modules/
+dist/
+docs/.stale
+.DS_Store
+apps/docs

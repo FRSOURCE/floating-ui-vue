@@ -1,0 +1,36 @@
+{
+  "name": "@frsource/floating-ui-vue-dom",
+  "version": "1.0.0",
+  "description": "",
+  "source": "./src/index.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.es.js",
+  "unpkg": "./dist/index.umd.js",
+  "types": "./dist/index.d.ts",
+  "sass": "src/index.scss",
+  "styles": "dist/index.css",
+  "scripts": {
+    "start": "pnpm clean && microbundle --no-compress --no-sourcemap watch --tsconfig tsconfig.json",
+    "build": "pnpm clean && microbundle --compress --tsconfig tsconfig.build.json",
+    "clean": "rimraf dist/**/*"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@floating-ui/dom": "^1.0.2",
+    "@vueuse/core": "^9.2.0"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "5.37.0",
+    "@typescript-eslint/parser": "5.37.0",
+    "eslint": "8.23.1",
+    "eslint-config-prettier": "8.5.0",
+    "microbundle": "0.15.1",
+    "tslib": "^2.4.0",
+    "typescript": "4.8.3"
+  },
+  "peerDependencies": {
+    "vue": "^3.2.38"
+  }
+}
