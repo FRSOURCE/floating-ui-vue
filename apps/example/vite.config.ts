@@ -5,6 +5,11 @@ import vue from '@vitejs/plugin-vue'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  server: {
+    watch: {
+      ignored: ['!**/node_modules/@frsource/floating-ui-vue-dom/**']
+    }
+  },
   plugins: [vue()],
   resolve: {
     alias: {

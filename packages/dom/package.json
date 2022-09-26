@@ -10,27 +10,31 @@
   "sass": "src/index.scss",
   "styles": "dist/index.css",
   "scripts": {
-    "start": "pnpm clean && microbundle --no-compress --no-sourcemap watch --tsconfig tsconfig.json",
+    "start": "microbundle --no-compress --no-sourcemap watch --tsconfig tsconfig.json",
     "build": "pnpm clean && microbundle --compress --tsconfig tsconfig.build.json",
-    "clean": "rimraf dist/**/*"
+    "clean": "rimraf dist",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts",
+    "lint:fix": "pnpm lint --fix"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@floating-ui/dom": "^1.0.2",
-    "@vueuse/core": "^9.2.0"
+    "@floating-ui/dom": "^1.0.2"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "5.37.0",
     "@typescript-eslint/parser": "5.37.0",
     "eslint": "8.23.1",
     "eslint-config-prettier": "8.5.0",
+    "eslint-plugin-eslint-comments": "^3.2.0",
     "microbundle": "0.15.1",
+    "rimraf": "^3.0.2",
     "tslib": "^2.4.0",
     "typescript": "4.8.3"
   },
   "peerDependencies": {
+    "@vueuse/core": "^9.2.0",
     "vue": "^3.2.38"
   }
 }

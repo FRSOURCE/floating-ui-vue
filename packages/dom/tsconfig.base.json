@@ -18,11 +18,11 @@
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
     "noEmit": true,
-    "baseUrl": ".",
+    "baseUrl": "."
   },
   "exclude": [
     "node_modules",
     "dist",
-    "scripts",
+    "scripts"
   ]
 }

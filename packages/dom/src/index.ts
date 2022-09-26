@@ -1,56 +1,57 @@
 import { autoUpdate, computePosition } from '@floating-ui/dom';
-import { Ref, ref, watch, ComponentPublicInstance, onScopeDispose, computed, reactive } from 'vue';
-import { resolveRef, unrefElement } from '@vueuse/core';
-import type { MaybeElementRef, MaybeRef } from '@vueuse/core';
-import type {  ComputePositionReturn, ComputePositionConfig } from '@floating-ui/dom';
+import { Ref, ref, watch, onScopeDispose, computed, reactive } from 'vue';
+import { MaybeElement, resolveRef, unrefElement, UnRefElementReturn } from '@vueuse/core';
+import type { MaybeRef } from '@vueuse/core';
+import type { ComputePositionReturn, ComputePositionConfig } from '@floating-ui/dom';
 
-type ElementOrComponentRef = Ref<HTMLElement | ComponentPublicInstance | undefined>;
-type InstanceWithCleanupType = { cleanup: ReturnType<typeof autoUpdate>, instance: ComputePositionReturn | undefined };
 const createFloatingUIInstance = async (
-  referenceRef: ElementOrComponentRef,
-  floatingRef: ElementOrComponentRef,
+  referenceElement: UnRefElementReturn<MaybeElement>,
+  floatingElement: UnRefElementReturn<MaybeElement>,
   options: Ref<Partial<ComputePositionConfig>>,
-) : Promise<undefined | InstanceWithCleanupType> => {
-  const referenceElement = unrefElement(referenceRef as MaybeElementRef);
-  const floatingElement = unrefElement(floatingRef as MaybeElementRef);
-  if (!referenceElement || !floatingElement || !(floatingElement instanceof HTMLElement)) {return;}
+) => {
+  if (!referenceElement || !(floatingElement instanceof HTMLElement)) return;
 
   const instance = ref<ComputePositionReturn>();
 
-  const cleanup = autoUpdate(referenceElement, floatingElement, async () => {
-    instance.value = await computePosition(referenceElement, floatingElement, options.value).catch(e => e);
-  });
+  const update = async () =>
+    instance.value = await computePosition(referenceElement, floatingElement, options.value);
 
-  return reactive({ cleanup, instance });
+  const cleanup = autoUpdate(referenceElement, floatingElement, update);
+
+  watch(options, update);
+
+  return reactive({ cleanup, instance, update });
 };
 
 export const useFloating = (options: MaybeRef<Partial<ComputePositionConfig>> = {}) => {
-  const referenceRef = ref<HTMLElement>();
-  const floatingRef = ref<HTMLElement>();
+  const referenceRef = ref<MaybeElement>();
+  const floatingRef = ref<MaybeElement>();
 
   const optionsInternal = resolveRef(options);
-  const floatingInstance = ref<InstanceWithCleanupType | undefined>();
+  const floatingInstance = ref<Awaited<ReturnType<typeof createFloatingUIInstance>>>();
 
   watch(
     [referenceRef, floatingRef] as const,
-    async () => {
-      if(unrefElement(referenceRef) || unrefElement(floatingRef)) {
-        console.log(options);
-        floatingInstance.value = await createFloatingUIInstance(referenceRef, floatingRef, optionsInternal);
-      } else {
-        floatingInstance.value?.cleanup();
-      }
-    }, {immediate: true});
+    async ([referenceRef, floatingRef]) => {
+      floatingInstance.value?.cleanup();
+
+      floatingInstance.value = await createFloatingUIInstance(unrefElement(referenceRef), unrefElement(floatingRef), optionsInternal);
+    },
+    {immediate: true}
+  );
 
   onScopeDispose(() => floatingInstance.value?.cleanup());
 
   return {
     cleanup: computed(() => floatingInstance.value?.cleanup),
+    update: computed(() => floatingInstance.value?.update),
     x: computed(() => floatingInstance.value?.instance?.x),
     y: computed(() => floatingInstance.value?.instance?.y),
     reference: referenceRef,
     floating: floatingRef,
-    strategy: computed(() => floatingInstance.value?.instance?.strategy)
+    placement: computed(() => floatingInstance.value?.instance?.placement),
+    strategy: computed(() => floatingInstance.value?.instance?.strategy),
+    middlewareData: computed(() => floatingInstance.value?.instance?.middlewareData)
   };
 };
 

@@ -18,7 +18,8 @@ module.exports = {
         parser: '@typescript-eslint/parser',
         ecmaVersion: 2020,
         sourceType: 'module',
-        project: './tsconfig.json',
+        tsconfigRootDir: __dirname,
+        project: 'tsconfig.json',
     },
     rules: {
         '@typescript-eslint/indent': ['error', 2],
