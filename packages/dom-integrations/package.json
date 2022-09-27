@@ -1,7 +1,7 @@
 {
-  "name": "@frsource/floating-ui-vue-dom",
+  "name": "@frsource/floating-ui-vue-dom-interactions",
   "version": "1.0.0",
-  "description": "Floating UI for Vue",
+  "description": "Floating UI Interactions for Vue",
   "source": "./src/index.ts",
   "main": "./dist/index.js",
   "module": "./dist/index.es.js",
@@ -17,10 +17,11 @@
     "lint:fix": "pnpm lint --fix"
   },
   "keywords": [],
-  "author": "",
+  "author": "Jakub Freisler <jakub.freisler@frsource.org>",
   "license": "MIT",
   "dependencies": {
-    "@floating-ui/dom": "^1.0.2"
+    "aria-hidden": "^1.2.1",
+    "@frsource/floating-ui-vue-dom": "workspace:*"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "5.37.0",
