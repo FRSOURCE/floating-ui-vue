@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { ref } from "vue";
 import { useFloating, flip } from "@frsource/floating-ui-vue-dom";
 
 const { x, y, reference, floating, strategy } = useFloating({
@@ -13,21 +12,11 @@ const { x, y, reference, floating, strategy } = useFloating({
 </script>
 
 <template>
-  <button
-    :ref="
-      (el) => {
-        reference = el;
-      }
-    "
-  >
-    Button
-  </button>
+  <h5>Tooltip position:</h5>
+  <p>x: {{ x }} y: {{ y }}</p>
+  <button ref="reference">Button</button>
   <div
-    :ref="
-      (el) => {
-        floating = el;
-      }
-    "
+    ref="floating"
     :style="{
       position: strategy,
       top: `${y ?? 0}px`,
@@ -37,5 +26,4 @@ const { x, y, reference, floating, strategy } = useFloating({
   >
     Tooltip Tooltip Tooltip Tooltip Tooltip Tooltip Tooltip Tooltip Tooltip
   </div>
-  <div></div>
 </template>
