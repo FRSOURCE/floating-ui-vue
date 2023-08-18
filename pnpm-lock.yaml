@@ -84,7 +84,7 @@ importers:
       eslint-plugin-eslint-comments: 3.2.0
       microbundle: 0.15.1
       rimraf: 3.0.2
-      tslib: 2.4.0
+      tslib: 2.6.2
       typescript: 4.8.3
       vue: ^3.2.38
     dependencies:
@@ -99,7 +99,7 @@ importers:
       eslint-plugin-eslint-comments: 3.2.0_eslint@8.27.0
       microbundle: 0.15.1
       rimraf: 3.0.2
-      tslib: 2.4.0
+      tslib: 2.6.2
       typescript: 4.8.3
 
 packages:
@@ -5540,7 +5540,7 @@ packages:
       sade: 1.8.1
       terser: 5.15.0
       tiny-glob: 0.2.9
-      tslib: 2.4.0
+      tslib: 2.6.2
       typescript: 4.8.3
     transitivePeerDependencies:
       - '@types/babel__core'
@@ -6873,7 +6873,7 @@ packages:
       fs-extra: 10.1.0
       resolve: 1.22.1
       rollup: 2.79.1
-      tslib: 2.4.0
+      tslib: 2.6.2
       typescript: 4.8.3
     dev: true
 
@@ -6925,7 +6925,7 @@ packages:
   /rxjs/7.5.6:
     resolution: {integrity: sha512-dnyv2/YsXhnm461G+R/Pe5bWP41Nm6LBXEYWI6eiFP4fiwx6WRI/CD0zbdVAudd9xwLEF2IDcKXLHit0FYjUzw==}
     dependencies:
-      tslib: 2.4.0
+      tslib: 2.6.2
     dev: true
 
   /sade/1.8.1:
@@ -7564,8 +7564,8 @@ packages:
     resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==}
     dev: true
 
-  /tslib/2.4.0:
-    resolution: {integrity: sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==}
+  /tslib/2.6.2:
+    resolution: {integrity: sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==}
     dev: true
 
   /tsutils/3.21.0_typescript@4.7.4:
