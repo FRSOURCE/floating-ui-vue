@@ -17,7 +17,7 @@
   "dependencies": {
     "@frsource/floating-ui-vue-dom": "workspace:*",
     "@vueuse/core": "9.3.0",
-    "vue": "3.2.39"
+    "vue": "3.3.8"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "1.2.0",
